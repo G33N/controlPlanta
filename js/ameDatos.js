@@ -1,9 +1,3 @@
-$(document).ready(function() {
-    listarSalidaPlanta();
-    listarStockPlanta();
-    listarStockSalidaPlanta();
-});
-
 function listarSalidaPlanta() {
     $.ajax({
         type: 'POST',
@@ -19,8 +13,15 @@ function listarSalidaPlanta() {
                 turbiedadEntrada = objeto[i].turbiedad_entrada;
                 turbiedadSalida = objeto[i].turbiedad_salida;
                 cloroResidual = objeto[i].cloro_residual;
+                colorTest = objeto[i].color_test;
                 fechaHora = objeto[i].fecha_hora;
-                $('#listarSalidaPlanta').append('<tr><td>' + caudal + '</td><td>' + turbiedadEntrada + '</td><td>' + turbiedadSalida + '</td><td>' + cloroResidual + '</td><td>' + fechaHora + '</td></tr>');
+                if(colorTest == 1){
+                  colorTest = 'Positivo';
+                }
+                else {
+                  colorTest = 'Negativo';
+                }
+                $('#listarSalidaPlanta').append('<tr><td>' + caudal + '</td><td>' + turbiedadEntrada + '</td><td>' + turbiedadSalida + '</td><td>' + cloroResidual + '</td><td>' + colorTest + '</td><td>' + fechaHora + '</td></tr>');
             }
         }
     });
