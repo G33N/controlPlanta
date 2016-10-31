@@ -74,16 +74,16 @@ function LoadBootstrapValidatorScript(callback){
 //  Dynamically load jQuery Select2 plugin
 //  homepage: https://github.com/ivaynberg/select2  v3.4.5  license - GPL2
 //
-function LoadSelect2Script(callback){
-	if (!$.fn.select2){
-		$.getScript('plugins/select2/select2.min.js', callback);
-	}
-	else {
-		if (callback && typeof(callback) === "function") {
-			callback();
-		}
-	}
-}
+// function LoadSelect2Script(callback){
+// 	if (!$.fn.select2){
+// 		$.getScript('plugins/select2/select2.min.js', callback);
+// 	}
+// 	else {
+// 		if (callback && typeof(callback) === "function") {
+// 			callback();
+// 		}
+// 	}
+// }
 //
 //  Dynamically load DataTables plugin
 //  homepage: http://datatables.net v1.9.4 license - GPL or BSD
@@ -2428,5 +2428,3 @@ $(document).ready(function () {
 		OpenModalBox(header, form, button);
 	});
 });
-
-

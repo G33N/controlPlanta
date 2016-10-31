@@ -1,7 +1,13 @@
+$(document).ready(function() {
+    listarSalidaPlanta();
+    listarStockPlanta();
+    listarStockSalidaPlanta();
+});
+
 function listarSalidaPlanta() {
     $.ajax({
         type: 'POST',
-        url: "amePlanta.php",
+        url: "datos/amePlanta.php",
         data: $(this).serialize() + "&orden=" + 10,
         success: function(data) {
             $('#listarSalidaPlanta').html("");
@@ -29,7 +35,7 @@ function listarSalidaPlanta() {
 function listarStockPlanta() {
     $.ajax({
         type: 'POST',
-        url: "amePlanta.php",
+        url: "datos/amePlanta.php",
         data: $(this).serialize() + "&orden=" + 11,
         success: function(data) {
             $('#listarStockPlanta').html("");
@@ -49,7 +55,7 @@ function listarStockPlanta() {
 function listarStockSalidaPlanta() {
     $.ajax({
         type: 'POST',
-        url: "amePlanta.php",
+        url: "datos/amePlanta.php",
         data: $(this).serialize() + "&orden=" + 12,
         success: function(data) {
             $('#listarStockSalidaPlanta').html("");
