@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora Docis</title>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body class="fondo-oscuro">
+    <nav class="navbar navbar-default navbar-taxi">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Aguas</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a id="sodio" href="#">HIPOCLORITO DE SODIO<span class="sr-only">(current)</span></a></li>
+                    <li><a id="sulfato" href="#">SULFATO DE ALUMINIO</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">REPORTES <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id="salidaPlanta" href="#">SALIDA DE PLANTA</a></li>
+                            <li><a  id="stockPlanta" href="#">STOCK</a></li>
+                            <li><a  id="salidaQuimicos" href="#">SALIDA QCOS</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container taxi-container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center clear">
+                <div class="col-xs-4 col-xs-offset-4  text-center">
+                    <img src="img/logo.png" class="logo-taxi img-center img-responsive" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sulfatoContainer" class="container action-container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 position-bottom text-center clear">
+              <form id="sulfatoForm">
+                <h4>SULFATO DE ALUMINIO</h4>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Bolsas</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="bolsas">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">CANTIDAD</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Dosis</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="dosis">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">PPM</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Caudal</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="caudal">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">M<sup>3</sup>/H</label>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-md btn-success" id="calcularSulfato">CALCULAR</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <div id="sodioContainer" class="container action-container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 position-bottom text-center clear">
+              <form id="sodioForm">
+                <h4>RELACION DOSIS / CAUDAL</h4>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Dosis</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="dosisSodio">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">ML/MIN</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Caudal</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="caudalSodio">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">M<sup>3</sup>/H</label>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-md btn-success" id="calcularSodio">CALCULAR</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <div id="salidaPlantaContainer" class="container action-container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 position-bottom text-center clear">
+              <form id="salidaPlantaForm" class="form-horizontal">
+                <h4>SALIDA DE PLANTA</h4>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Caudal</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="caudalSalida" name="caudalSalida">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">M<sup>3</sup>/H</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Turbiedad de Entrada</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="turbiedadEntrada" name="turbiedadEntrada">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">NTU</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Turbiedad de Salida</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="turbiedadSalida" name="turbiedadSalida">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">NTU</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Cloro Residual</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="cloroResidual" name="cloroResidual">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">PPM</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Color Test</label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" id="positivo" value="1" name="colorTest"> Positivo
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" id="negativo" value="0" name="colorTest"> Negativo
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-md btn-success" type="submit" id="enviarSalidaPlanta">ENVIAR</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <div id="stockPlantaContainer" class="container action-container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 position-bottom text-center clear">
+              <form id="stockPlantaForm" class="form-horizontal">
+                <h4>REPORTAR STOCK DE PLANTA</h4>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Sulfato</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="sulfatoStock" name="sulfatoStock">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Kg</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Hipoclorito</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="hipocloritoStock" name="hipocloritoStock">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">lt</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Polielectrolito</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="polielectrolitoStock" name="polielectrolitoStock">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">lt</label>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-md btn-success" type="submit" id="enviarStock">ENVIAR</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <div id="salidaQuimicosContainer" class="container action-container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 position-bottom text-center clear">
+              <form id="salidaQuimicosForm" class="form-horizontal">
+                <h4>REPORTAR SALIDA DE QUIMICOS</h4>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Sulfato</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="sulfatoStockSalida" name="sulfatoStockSalida">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Kg</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Hipoclorito</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="hipocloritoStockSalida" name="hipocloritoStockSalida">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">lt</label>
+                </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-4 col-form-label">Polielectrolito</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" value="" id="polielectrolitoStockSalida" name="polielectrolitoStockSalida">
+                    </div>
+                    <label for="example-text-input" class="col-xs-4 col-form-label">lt</label>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-md btn-success" type="submit" id="enviarStockSalida">ENVIAR</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <div id="resultado" class="col-xs-12 col-sm-12 col-md-12 text-center clear"></div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#sulfatoContainer').hide();
+            $('#sodioContainer').hide();
+            $('#salidaPlantaContainer').hide();
+            $('#salidaQuimicosContainer').hide();
+            $('#stockPlantaContainer').hide();
+            enviarSalidaPlanta();
+            enviarStockForm();
+            enviarSalidaQuimicosForm();
+        });
+    </script>
+    <script type="text/javascript">
+        $('#sulfato').click(function() {
+            $('#sulfatoContainer').show();
+            $('#sodioContainer').hide();
+            $('#salidaPlantaContainer').hide();
+            $('#salidaQuimicosContainer').hide();
+            $('#stockPlantaContainer').hide();
+            $('#resultado').html("");
+        });
+        $('#calcularSulfato').click(function() {
+            var bolsas = $('#bolsas').val();
+            var dosis = $('#dosis').val();
+            var caudal = $('#caudal').val();
+
+            caudalDosar = (((caudal * 1000) / 60) * dosis) / ((bolsas * 25 * 1000000) / 4000);
+            caudalDosar = caudalDosar.toFixed(2);
+
+            $('#resultado').html('<h4>Resultado</h4><br /><p> Debe ajustar el dosador a : ' + caudalDosar + 'lts/min</p>');
+        });
+    </script>
+    <script type="text/javascript">
+        $('#sodio').click(function() {
+            $('#sodioContainer').show();
+            $('#sulfatoContainer').hide();
+            $('#salidaPlantaContainer').hide();
+            $('#salidaQuimicosContainer').hide();
+            $('#stockPlantaContainer').hide();
+            $('#resultado').html("");
+        });
+        $('#calcularSodio').click(function() {
+            var dosis = $('#dosisSodio').val();
+            var caudal = $('#caudalSodio').val();
+
+            cloroCaudal = ((dosis * 60) / 1000) / caudal;
+            cloroCaudal = cloroCaudal.toFixed(2);
+
+            $('#resultado').html('<h4>Resultado</h4><br /><p> Relacion Cloro/Caudal : ' + cloroCaudal + 'lts/min</p><br/><p>Este valor debe ser entre 0,019 y 0,020</p>');
+        });
+    </script>
+    <script type="text/javascript">
+        $('#salidaPlanta').click(function() {
+            $('#sulfatoContainer').hide();
+            $('#sodioContainer').hide();
+            $('#salidaPlantaContainer').show();
+            $('#salidaQuimicosContainer').hide();
+            $('#stockPlantaContainer').hide();
+            $('#resultado').html("");
+        });
+        function enviarSalidaPlanta(){
+          $('#salidaPlantaForm').submit(function(){
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "http://aguasrionegrinas.enlaceit.com.ar/amePlanta.php",
+                                        data: $(this).serialize()+"&orden="+21,
+                                        success:function(data){
+                                            if(data.success === true ){
+                                                alert(data.message);
+                                            }
+                                            if(data.success === false ){
+                                                alert(data.message);
+                                            }
+                                        }
+                                    });
+                                    return false;
+                                    });
+        }
+    </script>
+    <script type="text/javascript">
+        $('#salidaQuimicos').click(function() {
+            $('#sulfatoContainer').hide();
+            $('#sodioContainer').hide();
+            $('#salidaPlantaContainer').hide();
+            $('#salidaQuimicosContainer').show();
+            $('#stockPlantaContainer').hide();
+            $('#resultado').html("");
+        });
+        function enviarSalidaQuimicosForm(){
+          $('#salidaQuimicosForm').submit(function(){
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "http://aguasrionegrinas.enlaceit.com.ar/amePlanta.php",
+                                        data: $(this).serialize()+"&orden="+23,
+                                        success:function(data){
+                                            if(data.success === true ){
+                                                alert(data.message);
+                                            }
+                                            if(data.success === false ){
+                                                alert(data.message);
+                                            }
+                                        }
+                                    });
+                                    return false;
+                                    });
+        }
+    </script>
+    <script type="text/javascript">
+        $('#stockPlanta').click(function() {
+            $('#sulfatoContainer').hide();
+            $('#sodioContainer').hide();
+            $('#salidaPlantaContainer').hide();
+            $('#salidaQuimicosContainer').hide();
+            $('#stockPlantaContainer').show();
+            $('#resultado').html("");
+        });
+        function enviarStockForm(){
+          $('#stockPlantaForm').submit(function(){
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "http://aguasrionegrinas.enlaceit.com.ar/amePlanta.php",
+                                        data: $(this).serialize()+"&orden="+22,
+                                        success:function(data){
+                                            if(data.success === true ){
+                                                alert(data.message);
+                                            }
+                                            if(data.success === false ){
+                                                alert(data.message);
+                                            }
+                                        }
+                                    });
+                                    return false;
+                                  });
+      }
+    </script>
+</body>
+
+</html>

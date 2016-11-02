@@ -3,9 +3,39 @@ include 'conexion.php';
 $fecha_hora = date('Y-m-d H:i:s');
 $orden = $_POST['orden'];
 switch ($orden) {
+  case 1:
+    $querySalidaPlanta =  mysqli_query($conexion,"SELECT * FROM salida_planta");
+    $salidaPlanta = array();
+        while($row =mysqli_fetch_assoc($querySalidaPlanta))
+        {
+            $salidaPlanta[] = $row;
+        }
+    $json = json_encode($salidaPlanta);
+    echo $json;
+  break;
+  case 2:
+    $queryStockPlanta =  mysqli_query($conexion,"SELECT * FROM stock");
+    $stockPlanta = array();
+        while($row =mysqli_fetch_assoc($queryStockPlanta))
+        {
+            $stockPlanta[] = $row;
+        }
+    $json = json_encode($stockPlanta);
+    echo $json;
+  break;
+  case 3:
+    $queryStockSalidaPlanta =  mysqli_query($conexion,"SELECT * FROM stock_salida");
+    $stockSalidaPlanta = array();
+        while($row =mysqli_fetch_assoc($queryStockSalidaPlanta))
+        {
+            $stockSalidaPlanta[] = $row;
+        }
+    $json = json_encode($stockSalidaPlanta);
+    echo $json;
+  break;
   case 10:
     $planta_id = $_POST['planta'];
-    $querySalidaPlanta =  mysqli_query($conexion,"SELECT * FROM salida_planta WHERE planta_id='$planta_id'") or die(mysqli_error());
+    $querySalidaPlanta =  mysqli_query($conexion,"SELECT * FROM salida_planta WHERE planta_id='$planta_id'");
     $salidaPlanta = array();
         while($row =mysqli_fetch_assoc($querySalidaPlanta))
         {
@@ -16,7 +46,7 @@ switch ($orden) {
   break;
   case 11:
     $planta_id = $_POST['planta'];
-    $queryStock =  mysqli_query($conexion,"SELECT * FROM stock WHERE planta_id='$planta_id'") or die(mysqli_error());
+    $queryStock =  mysqli_query($conexion,"SELECT * FROM stock WHERE planta_id='$planta_id'");
     $stock = array();
         while($row =mysqli_fetch_assoc($queryStock))
         {
@@ -27,13 +57,45 @@ switch ($orden) {
   break;
   case 12:
     $planta_id = $_POST['planta'];
-    $queryStockSalida =  mysqli_query($conexion,"SELECT * FROM stock_salida WHERE planta_id='$planta_id'") or die(mysqli_error());
+    $queryStockSalida =  mysqli_query($conexion,"SELECT * FROM stock_salida WHERE planta_id='$planta_id'");
     $stockSalida = array();
         while($row =mysqli_fetch_assoc($queryStockSalida))
         {
             $stockSalida[] = $row;
         }
     $json = json_encode($stockSalida);
+    echo $json;
+  break;
+  case 13:
+    $localidad = $_POST['localidad'];
+    $queryPlanta =  mysqli_query($conexion,"SELECT * FROM planta WHERE localidad_id='$localidad'");
+    $planta = array();
+        while($row =mysqli_fetch_assoc($queryPlanta))
+        {
+            $planta[] = $row;
+        }
+    $json = json_encode($planta);
+    echo $json;
+  break;
+  case 14:
+    $queryPlanta =  mysqli_query($conexion,"SELECT * FROM localidad");
+    $planta = array();
+        while($row =mysqli_fetch_assoc($queryPlanta))
+        {
+            $planta[] = $row;
+        }
+    $json = json_encode($planta);
+    echo $json;
+  break;
+  case 15:
+    $planta_id = $_POST['planta'];
+    $queryPlanta =  mysqli_query($conexion,"SELECT * FROM planta WHERE id='$planta_id'");
+    $planta = array();
+        while($row =mysqli_fetch_assoc($queryPlanta))
+        {
+            $planta[] = $row;
+        }
+    $json = json_encode($planta);
     echo $json;
   break;
   case 21:
