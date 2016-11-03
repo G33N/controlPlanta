@@ -15,13 +15,14 @@ function listarSalidaPlantas() {
                 cloroResidual = objeto[i].cloro_residual;
                 colorTest = objeto[i].color_test;
                 fechaHora = objeto[i].fecha_hora;
+                planta = objeto[i].planta_id;
                 if(colorTest == 1){
                   colorTest = 'Positivo';
                 }
                 else {
                   colorTest = 'Negativo';
                 }
-                $('#listarSalidaPlanta').append('<tr><td>' + caudal + '</td><td>' + turbiedadEntrada + '</td><td>' + turbiedadSalida + '</td><td>' + cloroResidual + '</td><td>' + colorTest + '</td><td>' + fechaHora + '</td></tr>');
+                $('#listarSalidaPlanta').append('<tr><td>' + caudal + '</td><td>' + turbiedadEntrada + '</td><td>' + turbiedadSalida + '</td><td>' + cloroResidual + '</td><td>' + colorTest + '</td><td>' + planta + '</td><td>' + fechaHora + '</td></tr>');
             }
         }
     });

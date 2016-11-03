@@ -74,16 +74,6 @@ function LoadBootstrapValidatorScript(callback){
 //  Dynamically load jQuery Select2 plugin
 //  homepage: https://github.com/ivaynberg/select2  v3.4.5  license - GPL2
 //
-// function LoadSelect2Script(callback){
-// 	if (!$.fn.select2){
-// 		$.getScript('plugins/select2/select2.min.js', callback);
-// 	}
-// 	else {
-// 		if (callback && typeof(callback) === "function") {
-// 			callback();
-// 		}
-// 	}
-// }
 //
 //  Dynamically load DataTables plugin
 //  homepage: http://datatables.net v1.9.4 license - GPL or BSD
@@ -568,18 +558,7 @@ function MessagesMenuWidth(){
 //
 // Function for change panels of Dashboard
 //
-function DashboardTabChecker(){
-	$('#content').on('click', 'a.tab-link', function(e){
-		e.preventDefault();
-		$('div#dashboard_tabs').find('div[id^=dashboard]').each(function(){
-			$(this).css('visibility', 'hidden').css('position', 'absolute');
-		});
-		var attr = $(this).attr('id');
-		$('#'+'dashboard-'+attr).css('visibility', 'visible').css('position', 'relative');
-		$(this).closest('.nav').find('li').removeClass('active');
-		$(this).closest('li').addClass('active');
-	});
-}
+
 //
 // Helper for run TinyMCE editor with textarea's
 //
@@ -2300,9 +2279,6 @@ $(document).ready(function () {
 		setTimeout(MessagesMenuWidth, 250);
 	});
 	var ajax_url = location.hash.replace(/^#/, '');
-	if (ajax_url.length < 1) {
-		ajax_url = 'ajax/dashboard.html';
-	}
 	LoadAjaxContent(ajax_url);
 	$('.main-menu').on('click', 'a', function (e) {
 		var parents = $(this).parents('li');
