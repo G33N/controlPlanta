@@ -112,8 +112,9 @@ function listarStockPlantaID(planta) {
                 sulfato = objeto[i].sulfato;
                 hipoclorito = objeto[i].hipoclorito;
                 polielectrolito = objeto[i].polielectrolito;
+                planta = objeto[i].planta_id;
                 fechaHora = objeto[i].fecha_hora;
-                $('#listarStockPlanta').append('<tr><td>' + sulfato + '</td><td>' + hipoclorito + '</td><td>' + polielectrolito + '</td><td>' + fechaHora + '</td></tr>');
+                $('#listarStockPlanta').append('<tr><td>' + sulfato + '</td><td>' + hipoclorito + '</td><td>' + polielectrolito + '</td><td>' + planta + '</td><td>' + fechaHora + '</td></tr>');
             }
         }
     });
@@ -132,8 +133,9 @@ function listarStockSalidaPlantaID(planta) {
                 sulfato = objeto[i].sulfato;
                 hipoclorito = objeto[i].hipoclorito;
                 polielectrolito = objeto[i].polielectrolito;
+                planta = objeto[i].planta_id;
                 fechaHora = objeto[i].fecha_hora;
-                $('#listarStockSalidaPlanta').append('<tr><td>' + sulfato + '</td><td>' + hipoclorito + '</td><td>' + polielectrolito + '</td><td>' + fechaHora + '</td></tr>');
+                $('#listarStockSalidaPlanta').append('<tr><td>' + sulfato + '</td><td>' + hipoclorito + '</td><td>' + polielectrolito + '</td><td>' + planta + '</td><td>' + fechaHora + '</td></tr>');
             }
         }
     });

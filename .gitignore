@@ -1,0 +1,3 @@
+#ignorar los directorios siguientes
+APPCargaDatos/
+datos/conexion.php

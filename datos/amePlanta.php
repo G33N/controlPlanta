@@ -1,5 +1,7 @@
 <?php
 include 'conexion.php';
+session_start();
+$usuario = $_SESSION['userid'];
 $fecha_hora = date('Y-m-d H:i:s');
 $orden = $_POST['orden'];
 switch ($orden) {
